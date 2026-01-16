@@ -1,6 +1,8 @@
 enum AppRoutes {
   onBoarding("/onBoarding"),
-  home("/home");
+  home("/home"),
+  explore('/explore'),
+  library('/library');
 
   const AppRoutes(this.path);
 

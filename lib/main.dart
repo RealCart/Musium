@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:musium/core/router/app_router.dart';
 import 'package:musium/core/theme/app_theme.dart';
@@ -7,6 +8,11 @@ import 'package:musium/app_dependencies.dart';
 void main() async {
   final WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarIconBrightness: Brightness.light,
+    statusBarBrightness: Brightness.dark, 
+  ));
 
   AppDependencies.init();
   await AppDependencies.instance.allReady();
@@ -37,7 +43,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp.router(
       title: 'Musium',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.theme,
+      themeMode: ThemeMode.dark,
+      darkTheme: AppTheme.theme,
       routerConfig: _routerConfig,
     );
   }

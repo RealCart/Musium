@@ -11,6 +11,8 @@ class _AppImages {
 
   String get onBoardingBacground => "$_path/Welcome.png";
   String get onBoardingGirl => "$_path/img_girl.png";
+  String get dummyAlbumCard => "$_path/dummy_album_card.png";
+  String get dummyTopMixesCard => "$_path/dummy_top_mixes_card.png";
 }
 
 class _AppIcons {
@@ -40,9 +42,11 @@ class _AppIcons {
   String get remove => "$_path/remove.svg";
   String get save => "$_path/save.svg";
   String get search => "$_path/search.svg";
-  String get settingsUi => "$_path/settingss-ui.svg";
+  String get settingsUi => "$_path/settings-ui.svg";
   String get share => "$_path/share.svg";
   String get tag => "$_path/tag.svg";
   String get time => "$_path/time.svg";
   String get triangle => "$_path/triangle.svg";
+  String get user => "$_path/user.svg";
+  String get folderUi => "$_path/folder-ui.svg";
 }

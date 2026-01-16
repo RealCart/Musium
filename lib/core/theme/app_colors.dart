@@ -8,6 +8,8 @@ class AppColors {
   static const Color black = Color(0xff121111);
   static const Color transparent = Colors.transparent;
 
+  static const Color circleColor = Color(0xffD9D9D9);
+
   static const Color colorScheme1 = Color(0xFF1DB1B7);
   static const Color colorScheme2 = Color(0xFF44D7DD);
   static const Color colorScheme3 = Color(0xFF00C2CB);
@@ -17,6 +19,10 @@ class AppColors {
   static const Color background1 = Color(0xFFFFFFFF);
   static const Color background2 = Color(0xC81E1E1E);
   static const Color background3 = Color(0xff06A0B5);
+  static const Color background4 = Color(0xff102B2D);
+
+  static const Color circleGradientColor1 = Color(0xff158085);
+  static const Color circleGradientColor2 = Color(0xff00DBFC);
   
   static const Color glowingColor = Color(0xff39C0D4);
 
@@ -25,5 +31,7 @@ class AppColors {
   static const Color text3 = Color(0xff7CEEFF);
   static const Color text4 = Color(0xB2FFFFFF);
   static const Color text5 = Color(0xFF76D7E6);
+
+  static const Color albumCard = Color(0x33436369);
 }
 

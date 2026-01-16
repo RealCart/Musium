@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
 class PressScaleTransition extends StatefulWidget {
-  const PressScaleTransition({super.key, required this.child, required this.onPressed,});
+  const PressScaleTransition({
+    required this.child, 
+    required this.onPressed,
+    this.endScale = 0.97,
+    super.key, 
+  });
 
   final Widget child;
   final VoidCallback onPressed;
+  final double endScale;
 
   @override
   State<PressScaleTransition> createState() => _PressScaleTransitionState();
@@ -21,7 +27,7 @@ class _PressScaleTransitionState extends State<PressScaleTransition> with Single
     super.initState();
     _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 150,), );
 
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.97).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut,),);
+    _scaleAnimation = Tween<double>(begin: 1.0, end: widget.endScale).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut,),);
   }
 
   @override

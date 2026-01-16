@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:musium/core/constants/app_assets.dart';
 import 'package:musium/core/presentation/widgets/glowing_button.dart';
+import 'package:musium/core/router/app_routes.dart';
 import 'package:musium/core/theme/app_colors.dart';
 import 'package:musium/core/theme/app_typography.dart';
 
@@ -36,78 +38,83 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTextStyle(
-      style: AppTypography.centuryGothicBold24,
-      textAlign: TextAlign.center,
-      child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage(AppAssets.images.onBoardingBacground),
-          ),
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: _bottomHeight,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: Image.asset(
-                  AppAssets.images.onBoardingGirl,
-                  fit: BoxFit.cover,
-                ),
-              ),
+    return Scaffold(
+      body: DefaultTextStyle(
+        style: AppTypography.centuryGothicBold24,
+        textAlign: TextAlign.center,
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage(AppAssets.images.onBoardingBacground),
             ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                key: _bottomKey,
-                width: double.infinity,
-                padding: const EdgeInsets.fromLTRB(31.5, 58.0, 31.5, 64.0),
-                decoration: const BoxDecoration(
-                  color: AppColors.black,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(54.0),
-                    topRight: Radius.circular(54.0),
+          ),
+          child: Stack(
+            children: [
+              Positioned(
+                bottom: _bottomHeight,
+                left: 20.0,
+                right: 0,
+                child: Center(
+                  child: Image.asset(
+                    AppAssets.images.onBoardingGirl,
+                    fit: BoxFit.cover,
                   ),
                 ),
-                child: Column(
-                  children: [
-                    const Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(text: "From the "),
-                          TextSpan(
-                            text: "latest ",
-                            style: TextStyle(color: AppColors.text5),
-                          ),
-                          TextSpan(text: "to the "),
-                          TextSpan(
-                            text: "greatest ",
-                            style: TextStyle(color: AppColors.text5),
-                          ),
-                          TextSpan(text: "hits, play your favorite tracks on "),
-                          TextSpan(
-                            text: "musium ",
-                            style: TextStyle(
-                              color: AppColors.text3,
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),
-                          TextSpan(text: "now!"),
-                        ],
-                      ),
+              ),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  key: _bottomKey,
+                  width: double.infinity,
+                  padding: const EdgeInsets.fromLTRB(31.5, 58.0, 31.5, 64.0),
+                  decoration: const BoxDecoration(
+                    color: AppColors.black,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(54.0),
+                      topRight: Radius.circular(54.0),
                     ),
-                    const SizedBox(height: 30.0),
-                    GlowingButton(onPressed: () {}, text: "Get Started"),
-                  ],
+                  ),
+                  child: Column(
+                    children: [
+                      const Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(text: "From the "),
+                            TextSpan(
+                              text: "latest ",
+                              style: TextStyle(color: AppColors.text5),
+                            ),
+                            TextSpan(text: "to the "),
+                            TextSpan(
+                              text: "greatest ",
+                              style: TextStyle(color: AppColors.text5),
+                            ),
+                            TextSpan(text: "hits, play your favorite tracks on "),
+                            TextSpan(
+                              text: "musium ",
+                              style: TextStyle(
+                                color: AppColors.text3,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                            TextSpan(text: "now!"),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 30.0),
+                      GlowingButton(
+                        text: "Get Started",
+                        onPressed: () => context.goNamed(AppRoutes.home.name)
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
