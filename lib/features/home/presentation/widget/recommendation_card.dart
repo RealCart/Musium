@@ -3,9 +3,9 @@ import 'package:musium/core/presentation/widgets/press_scale_transition.dart';
 
 class RecommendationCard extends StatelessWidget {
   const RecommendationCard({
-    super.key,
     required this.imagePath,
     required this.onPressed,
+    super.key,
   });
 
   final String imagePath;
@@ -19,8 +19,9 @@ class RecommendationCard extends StatelessWidget {
         onPressed: onPressed,
         child: Image.asset(
           imagePath,
-        ), 
-      )
+          fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 }

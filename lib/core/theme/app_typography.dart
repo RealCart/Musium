@@ -9,7 +9,7 @@ extension TextStyleEx on TextStyle {
 class AppTypography {
   AppTypography._();
 
-    static const TextStyle centuryGothicBold27 = TextStyle(
+  static const TextStyle centuryGothicBold27 = TextStyle(
     fontSize: 27.0,
     fontWeight: FontWeight.w700,
     fontFamily: AppConstants.centuryGothic,
@@ -37,7 +37,6 @@ class AppTypography {
     color: AppColors.white,
   );
 
-
   static const TextStyle centuryGothicBold14 = TextStyle(
     fontSize: 14.0,
     fontWeight: FontWeight.w700,
@@ -52,13 +51,19 @@ class AppTypography {
     color: AppColors.text4,
   );
 
-  static const TextStyle centuryGothicBold13 = TextStyle(
+  static const TextStyle centuryGothicRegular13Grey = TextStyle(
     fontSize: 13.0,
     fontWeight: FontWeight.w400,
     fontFamily: AppConstants.centuryGothic,
     color: AppColors.text2,
   );
 
+  static const TextStyle centuryGothicBold13 = TextStyle(
+    fontSize: 13.0,
+    fontWeight: FontWeight.w400,
+    fontFamily: AppConstants.centuryGothic,
+    color: AppColors.text2,
+  );
 
   static const TextStyle centuryGothicBold11 = TextStyle(
     fontSize: 11.0,
@@ -74,7 +79,7 @@ class AppTypography {
     fontFamily: AppConstants.centuryGothic,
   );
 
-    static const TextStyle centuryGothicBold10 = TextStyle(
+  static const TextStyle centuryGothicBold10 = TextStyle(
     fontSize: 10.0,
     fontWeight: FontWeight.bold,
     color: AppColors.white,

@@ -16,7 +16,8 @@ class CustomBottomNavigationBar extends StatefulWidget {
   final int? selectedIndex;
 
   @override
-  State<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
+  State<CustomBottomNavigationBar> createState() =>
+      _CustomBottomNavigationBarState();
 }
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
@@ -26,14 +27,14 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   void initState() {
     super.initState();
     _children = [
-      for (int i = 0; i < widget.items.length; i++)       
+      for (int i = 0; i < widget.items.length; i++)
         Expanded(
           child: CustomBottomNavigationBarItem(
-            icon: widget.items[i].icon, 
+            icon: widget.items[i].icon,
             title: widget.items[i].title,
             onPressed: () => widget.onTap?.call(i),
             isSelected: i == widget.selectedIndex,
-          )
+          ),
         ),
     ];
   }
@@ -42,17 +43,34 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   void didUpdateWidget(covariant CustomBottomNavigationBar oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget != widget) {
-      _children = [
-        for (int i = 0; i < widget.items.length; i++)       
-          Expanded(
-            child: CustomBottomNavigationBarItem(
-              icon: widget.items[i].icon, 
-              title: widget.items[i].title,
-              onPressed: () => widget.onTap?.call(i),
-              isSelected: i == widget.selectedIndex,
-            )
+      final int? oldSelectedIndex = oldWidget.selectedIndex;
+      final int? newSelectedIndex = widget.selectedIndex;
+
+      if (oldSelectedIndex == newSelectedIndex) {
+        return;
+      }
+
+      if (oldSelectedIndex != null) {
+        _children[oldSelectedIndex] = Expanded(
+          child: CustomBottomNavigationBarItem(
+            icon: widget.items[oldSelectedIndex].icon,
+            title: widget.items[oldSelectedIndex].title,
+            onPressed: () => widget.onTap?.call(oldSelectedIndex),
+            isSelected: false,
           ),
-      ];
+        );
+      }
+
+      if (newSelectedIndex != null) {
+        _children[newSelectedIndex] = Expanded(
+          child: CustomBottomNavigationBarItem(
+            icon: widget.items[newSelectedIndex].icon,
+            title: widget.items[newSelectedIndex].title,
+            onPressed: () => widget.onTap?.call(newSelectedIndex),
+            isSelected: true,
+          ),
+        );
+      }
     }
   }
 
@@ -63,7 +81,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       child: SizedBox(
         height: kBottomNavigationBarHeight,
         child: DefaultTextStyle(
-          style: AppTypography.centuryGothicBold11, 
+          style: AppTypography.centuryGothicBold11,
           child: Flex(
             direction: .horizontal,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -13,6 +13,7 @@ class _AppImages {
   String get onBoardingGirl => "$_path/img_girl.png";
   String get dummyAlbumCard => "$_path/dummy_album_card.png";
   String get dummyTopMixesCard => "$_path/dummy_top_mixes_card.png";
+  String get dummyTopGeneres => "$_path/dummy_top_generes.png";
 }
 
 class _AppIcons {
@@ -49,4 +50,5 @@ class _AppIcons {
   String get triangle => "$_path/triangle.svg";
   String get user => "$_path/user.svg";
   String get folderUi => "$_path/folder-ui.svg";
+  String get searchLoupe => "$_path/search_loupe.svg";
 }

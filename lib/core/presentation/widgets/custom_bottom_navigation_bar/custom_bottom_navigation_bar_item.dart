@@ -18,24 +18,46 @@ class CustomBottomNavigationBarItem extends StatefulWidget {
   final bool isSelected;
 
   @override
-  State<CustomBottomNavigationBarItem> createState() => _CustomBottomNavigationBarItemState();
+  State<CustomBottomNavigationBarItem> createState() =>
+      _CustomBottomNavigationBarItemState();
 }
 
-class _CustomBottomNavigationBarItemState extends State<CustomBottomNavigationBarItem> with SingleTickerProviderStateMixin{
+class _CustomBottomNavigationBarItemState
+    extends State<CustomBottomNavigationBarItem>
+    with SingleTickerProviderStateMixin {
   bool _childHandledPress = false;
   late final AnimationController _animationController;
-  late final Animation<double> _animationValue; 
-
+  late final Animation<double> _animationValue;
 
   Color _isSelectedColor(bool isSelected) {
     return isSelected ? AppColors.colorScheme3 : AppColors.white;
   }
-  
+
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 150));
-    _animationValue = Tween<double>(begin: 1.0, end: 0.85).animate(CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 150),
+    );
+    _animationValue = Tween<double>(begin: 1.0, end: 0.85).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
+
+    if (widget.isSelected) {
+      _animationController.forward();
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant CustomBottomNavigationBarItem oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget != widget) {
+      if (oldWidget.isSelected && !widget.isSelected) {
+        if (!mounted) return;
+        _animationController.reverse();
+      }
+    }
   }
 
   @override
@@ -61,7 +83,6 @@ class _CustomBottomNavigationBarItemState extends State<CustomBottomNavigationBa
 
     if (!mounted) return;
     widget.onPressed.call();
-    await _animationController.reverse();
   }
 
   Future<void> _handleTapCancel() async {
@@ -70,7 +91,6 @@ class _CustomBottomNavigationBarItemState extends State<CustomBottomNavigationBa
     if (!mounted) return;
     await _animationController.reverse();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +109,7 @@ class _CustomBottomNavigationBarItemState extends State<CustomBottomNavigationBa
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ScaleTransition(
-              scale: _animationValue, 
+              scale: _animationValue,
               child: SvgPicture.asset(
                 widget.icon,
                 width: 20.0,
@@ -97,16 +117,16 @@ class _CustomBottomNavigationBarItemState extends State<CustomBottomNavigationBa
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
                   _isSelectedColor(widget.isSelected),
-                  BlendMode.srcIn
+                  BlendMode.srcIn,
                 ),
               ),
             ),
             Text(
-              widget.title, 
+              widget.title,
               style: AppTypography.centuryGothicBold11.setColor(
                 _isSelectedColor.call(widget.isSelected),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -115,5 +135,5 @@ class _CustomBottomNavigationBarItemState extends State<CustomBottomNavigationBa
 }
 
 class _PressScaleNotification extends Notification {
-  const _PressScaleNotification(); 
+  const _PressScaleNotification();
 }

@@ -25,8 +25,8 @@ class HomeScreen extends StatelessWidget implements GoRouteWrapper {
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
+    final double recommendationDimension = screenHeight * 0.192;
     log("Rebuild...", name: "HomeScreen");
-
 
     return GradientScaffold(
       body: SafeArea(
@@ -37,12 +37,14 @@ class HomeScreen extends StatelessWidget implements GoRouteWrapper {
               leading: Padding(
                 padding: const .symmetric(horizontal: 23.0),
                 child: Row(
-                  crossAxisAlignment: .center,
                   children: [
                     ProfileCircleAvatar(
                       child: SvgPicture.asset(
-                        AppAssets.icons.user, fit: .scaleDown,
-                        colorFilter: const ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+                        AppAssets.icons.user,
+                        colorFilter: const ColorFilter.mode(
+                          AppColors.white,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 15.0),
@@ -51,21 +53,37 @@ class HomeScreen extends StatelessWidget implements GoRouteWrapper {
                         crossAxisAlignment: .start,
                         mainAxisAlignment: .center,
                         children: [
-                          Text("Welcome back !", style: AppTypography.centuryGothicBold16.setColor(AppColors.white),),
-                          const Text("chandrama", style: AppTypography.centuryGothicBold13,)
+                          Text(
+                            "Welcome back !",
+                            style: AppTypography.centuryGothicBold16.setColor(
+                              AppColors.white,
+                            ),
+                          ),
+                          const Text(
+                            "chandrama",
+                            style: AppTypography.centuryGothicBold13,
+                          ),
                         ],
                       ),
                     ),
-                    CustomIconButton(onPressed: () {}, path: AppAssets.icons.settingsUi),
+                    CustomIconButton(
+                      onPressed: () {},
+                      path: AppAssets.icons.settingsUi,
+                    ),
                   ],
                 ),
               ),
               leadingWidth: double.infinity,
             ),
             SliverPadding(
-              padding: const .fromLTRB(29.0, 30.0, 16.0, kBottomNavigationBarHeight + 30.0),
+              padding: const .fromLTRB(
+                29.0,
+                30.0,
+                16.0,
+                kBottomNavigationBarHeight + 30.0,
+              ),
               sliver: SliverList.list(
-              children: [
+                children: [
                   ScreenSection(
                     title: "Continue Listening",
                     child: GridView.builder(
@@ -82,7 +100,7 @@ class HomeScreen extends StatelessWidget implements GoRouteWrapper {
                       itemBuilder: (context, index) {
                         return AlbumCard(
                           onPressed: () {},
-                          imagePath: AppAssets.images.dummyAlbumCard, 
+                          imagePath: AppAssets.images.dummyAlbumCard,
                           name: "Coffe & Jazz",
                         );
                       },
@@ -90,22 +108,23 @@ class HomeScreen extends StatelessWidget implements GoRouteWrapper {
                   ),
                   const SizedBox(height: 35.0),
                   ScreenSection(
-                    title: "Your Top Mixes", 
+                    title: "Your Top Mixes",
                     child: SizedBox(
-                      height: screenHeight * 0.162, 
+                      height: screenHeight * 0.162,
                       child: RepaintBoundary(
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           cacheExtent: screenHeight * 0.162,
-                          itemBuilder:(context, index) {
+                          itemBuilder: (context, index) {
                             return MixesCard(
-                              dimension: screenHeight * 0.162, 
-                              imagePath: AppAssets.images.dummyTopMixesCard, 
-                              title: "Pop Mix", 
-                              onPressed:() {},
+                              dimension: screenHeight * 0.162,
+                              imagePath: AppAssets.images.dummyTopMixesCard,
+                              title: "Pop Mix",
+                              onPressed: () {},
                             );
-                          }, 
-                          separatorBuilder: (_, _) => const SizedBox(width: 31.0), 
+                          },
+                          separatorBuilder: (_, _) =>
+                              const SizedBox(width: 31.0),
                           itemCount: 4,
                         ),
                       ),
@@ -113,20 +132,21 @@ class HomeScreen extends StatelessWidget implements GoRouteWrapper {
                   ),
                   const SizedBox(height: 45.0),
                   ScreenSection(
-                    title: "Recommendations", 
+                    title: "Recommendations",
                     child: SizedBox(
-                      height: screenHeight * 0.192,
+                      height: recommendationDimension,
                       child: RepaintBoundary(
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
-                          cacheExtent: screenHeight * 0.162,
-                          itemBuilder:(context, index) {
+                          cacheExtent: recommendationDimension,
+                          itemBuilder: (context, index) {
                             return RecommendationCard(
                               onPressed: () {},
-                              imagePath: AppAssets.images.dummyTopMixesCard, 
+                              imagePath: AppAssets.images.dummyTopMixesCard,
                             );
-                          }, 
-                          separatorBuilder: (_, _) => const SizedBox(width: 38.0), 
+                          },
+                          separatorBuilder: (_, _) =>
+                              const SizedBox(width: 38.0),
                           itemCount: 4,
                         ),
                       ),
@@ -134,10 +154,10 @@ class HomeScreen extends StatelessWidget implements GoRouteWrapper {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
-      )
+      ),
     );
   }
 }
