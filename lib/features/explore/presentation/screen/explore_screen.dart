@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:musium/core/constants/app_assets.dart';
+import 'package:musium/core/constants/app_constants.dart';
 import 'package:musium/core/presentation/widgets/gradient_scaffold.dart';
 import 'package:musium/core/presentation/widgets/screen_section.dart';
 import 'package:musium/core/presentation/widgets/sliver_sized_box.dart';
-import 'package:musium/core/theme/app_colors.dart';
 import 'package:musium/core/theme/app_typography.dart';
-import 'package:musium/features/explore/presentation/widgets/sliver_text_field_pinned_header.dart';
+import 'package:musium/features/explore/presentation/widgets/search_text_field.dart';
+import 'package:musium/features/explore/presentation/widgets/explore_card.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({super.key});
@@ -13,6 +14,7 @@ class ExploreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
+    final cardExtent = screenHeight * 0.106;
 
     return GradientScaffold(
       body: SafeArea(
@@ -28,9 +30,21 @@ class ExploreScreen extends StatelessWidget {
               ),
             ),
             const SliverSizedBox(height: 29.0),
-            const SliverTextFieldPinnedHeader(),
+            const SliverPadding(
+              padding: .symmetric(horizontal: 28.0),
+              sliver: SliverToBoxAdapter(
+                child: SearchTextField(
+                  hintText: "Songs, Artists, Podcasts & More",
+                ),
+              ),
+            ),
             SliverPadding(
-              padding: const .symmetric(horizontal: 39.0),
+              padding: const .fromLTRB(
+                39.0,
+                0.0,
+                39.0,
+                kBottomNavigationBarHeight + 30.0,
+              ),
               sliver: SliverList.list(
                 children: [
                   const SizedBox(height: 32.0),
@@ -41,48 +55,50 @@ class ExploreScreen extends StatelessWidget {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: 4,
+                      cacheExtent: 2 * cardExtent,
                       itemBuilder: (context, index) {
-                        return ClipRRect(
-                          borderRadius: BorderRadiusGeometry.circular(7.0),
-                          child: ColoredBox(
-                            color: const Color(0xffCF25A0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsGeometry.only(
-                                    top: 14.0,
-                                    left: 14.0,
-                                  ),
-                                  child: Text(
-                                    "Indie",
-                                    style: AppTypography.centuryGothicBold16
-                                        .setColor(
-                                          AppColors.white,
-                                        ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Transform.rotate(
-                                    angle: 0.471,
-                                    child: Image.asset(
-                                      AppAssets.images.dummyTopGeneres,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                        final Color backgroundColor =
+                            AppConstants.topGenresColors[index];
+
+                        return ExploreCard(
+                          title: "Indie",
+                          imagePath: AppAssets.images.dummyTopGeneres,
+                          backgroundColor: backgroundColor,
+                          onPressed: () {},
                         );
                       },
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         mainAxisSpacing: 13.0,
                         crossAxisSpacing: 21.0,
-                        mainAxisExtent: screenHeight * 0.106,
+                        mainAxisExtent: cardExtent,
                         childAspectRatio: 1.704,
                       ),
+                    ),
+                  ),
+                  const SizedBox(height: 50.0),
+                  ScreenSection(
+                    title: "Browse All",
+                    child: GridView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      primary: false,
+                      shrinkWrap: true,
+                      itemCount: 6,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 13.0,
+                        crossAxisSpacing: 21.0,
+                        mainAxisExtent: cardExtent,
+                        childAspectRatio: 1.704,
+                      ),
+                      itemBuilder: (context, index) {
+                        return ExploreCard(
+                          title: "Indie",
+                          imagePath: AppAssets.images.dummyTopGeneres,
+                          backgroundColor: AppConstants.topGenresColors[2],
+                          onPressed: () {},
+                        );
+                      },
                     ),
                   ),
                 ],

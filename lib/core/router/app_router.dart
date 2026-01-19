@@ -4,6 +4,7 @@ import 'package:musium/core/data/sources/local/shared_storage.dart';
 import 'package:musium/core/presentation/screens/on_boarding_screen.dart';
 import 'package:musium/core/presentation/widgets/bottom_navigation_widget.dart';
 import 'package:musium/core/router/app_routes.dart';
+import 'package:musium/core/utils/extenstons/go_route_extension.dart';
 import 'package:musium/features/explore/presentation/screen/explore_screen.dart';
 import 'package:musium/features/home/presentation/screen/home_screen.dart';
 import 'package:musium/features/library/presentation/screen/library_screen.dart';
@@ -21,7 +22,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.onBoarding.path,
         name: AppRoutes.onBoarding.name,
-        builder:(context, state) => const OnBoardingScreen(),
+        builder: (context, state) => const OnBoardingScreen(),
         onExit: (context, state) {
           _sharedStorage.writeBool(AppConstants.onBoardingKey, true);
           return true;
@@ -32,7 +33,7 @@ class AppRouter {
           return BottomNavigationWidget(
             currentIndex: navigationShell.currentIndex,
             onPressed: navigationShell.goBranch,
-            selectedTab: navigationShell
+            selectedTab: navigationShell,
           );
         },
         branches: [
@@ -60,17 +61,17 @@ class AppRouter {
           ),
           StatefulShellBranch(
             routes: [
-              GoRoute(
+              GoRouteEx.wrappedRoute(
                 path: AppRoutes.library.path,
                 name: AppRoutes.library.name,
-                builder: (context, state) {
+                wrappedBuilder: (context, state) {
                   return const LibraryScreen();
                 },
               ),
             ],
           ),
         ],
-      )
+      ),
     ],
     // redirect: (context, state) {
     //   final bool hasSeenOnBoarding = _sharedStorage.readBool(AppConstants.onBoardingKey);

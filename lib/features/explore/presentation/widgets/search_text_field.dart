@@ -6,11 +6,11 @@ import 'package:musium/core/theme/app_typography.dart';
 
 class SearchTextField extends StatelessWidget {
   const SearchTextField({
-    this.isPinned = false,
+    this.hintText,
     super.key,
   });
 
-  final bool isPinned;
+  final String? hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +30,17 @@ class SearchTextField extends StatelessWidget {
         ),
         fillColor: AppColors.circleColor,
         filled: true,
-        hintText: "Songs, Artists, Podcasts & More",
+        hintText: hintText,
         hintStyle: AppTypography.centuryGothicRegular13Grey,
-        border: isPinned
-            ? null
-            : OutlineInputBorder(
-                borderRadius: BorderRadius.circular(18.0),
-              ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18.0),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18.0),
+        ),
       ),
     );
   }

@@ -11,7 +11,11 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.black,
     appBarTheme: const AppBarThemeData(
       systemOverlayStyle: SystemUiOverlayStyle.light,
-      backgroundColor: AppColors.transparent,
-    )
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: AppColors.background3,
+      selectionColor: AppColors.background3.withAlpha(50),
+      selectionHandleColor: AppColors.background3,
+    ),
   );
 }

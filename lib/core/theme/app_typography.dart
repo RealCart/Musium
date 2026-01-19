@@ -51,6 +51,13 @@ class AppTypography {
     color: AppColors.text4,
   );
 
+  static const TextStyle centuryGothicRegular12 = TextStyle(
+    fontSize: 12.0,
+    fontWeight: FontWeight.w400,
+    fontFamily: AppConstants.centuryGothic,
+    color: AppColors.white,
+  );
+
   static const TextStyle centuryGothicRegular13Grey = TextStyle(
     fontSize: 13.0,
     fontWeight: FontWeight.w400,

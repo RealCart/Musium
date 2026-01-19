@@ -114,7 +114,7 @@ class HomeScreen extends StatelessWidget implements GoRouteWrapper {
                       child: RepaintBoundary(
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
-                          cacheExtent: screenHeight * 0.162,
+                          cacheExtent: 200.0,
                           itemBuilder: (context, index) {
                             return MixesCard(
                               dimension: screenHeight * 0.162,
@@ -138,7 +138,7 @@ class HomeScreen extends StatelessWidget implements GoRouteWrapper {
                       child: RepaintBoundary(
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
-                          cacheExtent: recommendationDimension,
+                          cacheExtent: 3 * recommendationDimension,
                           itemBuilder: (context, index) {
                             return RecommendationCard(
                               onPressed: () {},

@@ -13,10 +13,10 @@ class RecommendationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadiusGeometry.circular(5.0),
-      child: PressScaleTransition(
-        onPressed: onPressed,
+    return PressScaleTransition(
+      onPressed: onPressed,
+      child: ClipRRect(
+        borderRadius: BorderRadiusGeometry.circular(5.0),
         child: Image.asset(
           imagePath,
           fit: BoxFit.cover,
