@@ -51,7 +51,7 @@ class RoundedGradientButton extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 26.0),
+          const SizedBox(width: 10.0),
           Expanded(
             child: Text(
               title,
